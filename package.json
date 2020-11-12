@@ -1,0 +1,16 @@
+{
+  "name": "test-substrate-lite-ws",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "substrate-lite": "^0.1.1",
+    "websocket": "^1.0.32"
+  }
+}
