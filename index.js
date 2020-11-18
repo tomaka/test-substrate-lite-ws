@@ -8,10 +8,13 @@ let client = null;
 var unsent_queue = [];
 let ws_connection = null;
 
-substrate_lite.start(Buffer.from(fs.readFileSync('./westend.json')).toString('utf8'), (resp) => {
-    if (ws_connection) {
-        console.log("Sending back:", resp);
-        ws_connection.sendUTF(resp);
+substrate_lite.start({
+    chain_spec: Buffer.from(fs.readFileSync('./westend.json')).toString('utf8'),
+    json_rpc_callback: (resp) => {
+        if (ws_connection) {
+            console.log("Sending back:", resp);
+            ws_connection.sendUTF(resp);
+        }
     }
 })
     .then((c) => {
