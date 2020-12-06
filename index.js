@@ -12,7 +12,7 @@ substrate_lite.start({
     chain_spec: Buffer.from(fs.readFileSync('./westend.json')).toString('utf8'),
     json_rpc_callback: (resp) => {
         if (ws_connection) {
-            console.log("Sending back:", resp);
+            console.log("Sending back:", resp.slice(0, 100));
             ws_connection.sendUTF(resp);
         }
     }
@@ -45,7 +45,7 @@ wsServer.on('request', function(request) {
 
     connection.on('message', function(message) {
         if (message.type === 'utf8') {
-            console.log('Received Message: ' + message.utf8Data);
+            console.log('Received Message: ' + message.utf8Data.slice(0, 100));
             if (client) {
                 client.send_json_rpc(message.utf8Data);
             } else {
